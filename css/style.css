@@ -1,0 +1,37 @@
+body{ background-color: #FFEAD5; margin:0px; padding:0PX;}
+#wrap{ width:100%; height:auto; overflow:auto;}
+
+header{ width:100%; background-color:#D76B00; padding:10px 0px 10px 0px; height:auto; overflow:auto;}
+.logo{ float:left;}
+header h1{ margin:0px; padding:35px 0px 0px 40px; font-size:44px; text-shadow:#000 2px 2px;}
+header .a{ font-family:"Lucida Calligraphy"; color:#FFDEBD;}
+header .b{ font-family: Chiller; font-size:47px; color: #532900; margin-left:-7px;}
+
+header p{ margin:-6px 0px 0px 0px; padding:0px 0px 0px 40px; font-family:Calibri; color:#FFF; font-size:14px;}
+
+.top{ float:right; padding:35px 30px 0px 0px;}
+.top table{ font-family:Calibri; font-size:16px; color:#FFF; font-weight:bold;}
+.top input[type="text"],.top input[type="password"]{ height:20px; width:190px; border:none; font-size:12px; font-family:"Comic Sans MS"; padding-left:4px;}
+.top input[type="submit"]{ height:21px; width:50px; background-color:#4F2700; border:none; color:#FFF; font-size:12px; font-family:Calibri; margin-top:18px;}
+
+#mid{ width:92%; padding:10px 4% 10px 4%; height:auto; overflow:auto;}
+
+.mid1{ float:left; width:42%; padding:15px 4% 15px 4%;}
+.mid1 img{ width:100%;}
+.mid1 h2{ font-family:"Monotype Corsiva"; color:#482400;}
+.mid2{ float:right; width:45%; height: auto; overflow:; background-color: #FFF;-webkit-border-radius:4px;-o-border-radius:4px;-moz-border-radius:4px;border-radius:4px; -webkit-box-shadow:#3E1F00 7px 7px 8px;-moz-box-shadow:#3E1F00 7px 7px 8px;-o-box-shadow:#3E1F00 7px 7px 8px;box-shadow:#3E1F00 7px 7px 8px;}
+.mid2 h2{ font-family:"Comic Sans MS"; margin:0px; padding:10px 0px 0px 40px;color:#572C00;}
+.mid2 p{ margin:0px; padding:0px 0px 0px 40px; font-family:Verdana; font-size:12px; color:#572C00;}
+.er{ font-family:Verdana; font-size:14px; color:#F00; margin:0px; padding:0px 0px 0px 40px;}
+.er1{ font-family:Verdana; font-weight:normal; font-size:12px; color:#F00; margin:0px;}
+
+.mid2 table{ margin-left:40px; margin-top:15px; font-family:Calibri; font-size:16px; color:#2B1500;}
+.mid2 table span{ font-weight:bolder; font-size:18px; padding-right:10px;}
+.mid2 td{ padding-top:10px;}
+.fname{ height:40px; width:200px; border: #351B00 solid 1px; font-size:18px; font-family:Calibri; padding-left:4px; -webkit-border-radius:4px;-o-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+
+.id{ height:40px; width:410px; border:#351B00 solid 1px; font-size:18px; font-family: Calibri; padding-left:4px;-webkit-border-radius:4px;-o-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+
+.mid2 select{height:40px; padding-left:20px;padding-right:20px; border: #351B00 solid 1px; font-size:18px; font-family:Calibri; padding-left:4px; -webkit-border-radius:4px;-o-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+
+.mid2 input[type="submit"]{ height:40px; width:150px; background-color:#4F2700; border:none; color:#FFF; font-size:16px; font-family:Calibri; margin-top:18px;-webkit-border-radius:4px;-o-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
