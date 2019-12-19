@@ -1,0 +1,255 @@
+<?php
+session_start();
+error_reporting(0);
+/////////////////////
+//registration  process
+$fname = $_REQUEST['fname'];
+$lname = $_REQUEST['lname'];
+$id = $_REQUEST['id'];
+$pwd = $_REQUEST['pwd'];
+$cpwd = $_REQUEST['cpwd'];
+$g = $_REQUEST['g'];
+$city = $_REQUEST['city'];
+$day = $_REQUEST['day'];
+$month = $_REQUEST['month'];
+$year = $_REQUEST['year'];
+$date = $_REQUEST['date'];
+$dob = $day."-".$month."-".$year;
+if(isset($_REQUEST['reg']))
+{
+  if(empty($fname) || empty($lname) || empty($id) || empty($pwd) || empty($cpwd) || empty($g) || empty($city) || empty($day) || empty($month) || empty($year))
+  {
+    $er = "Please fill all required fields";
+  }
+  else
+  {
+    if(file_exists("database/$id"))
+	{
+	  $er1 = "Email address is already exists";
+	}
+	else
+	{
+	  if($pwd != $cpwd)
+	  {
+	   $er2 = "Please re-enter confirm password";
+	  }
+	  else
+	  {
+	    $dob = $day."-".$month."-".$year;
+	    mkdir("database/$id");
+		mkdir("database/$id/inbox");
+		mkdir("database/$id/sent");
+		mkdir("database/$id/draft");
+		mkdir("database/$id/trash");
+		mkdir("database/$id/trash/inbox");
+		mkdir("database/$id/trash/sent");
+		mkdir("database/$id/trash/draft");
+		mkdir("database/$id/profile");
+		mkdir("database/$id/picture");
+		mkdir("database/$id/friend");
+		mkdir("database/$id/request");
+		file_put_contents("database/$id/profile/fname",$fname);
+		file_put_contents("database/$id/profile/lname",$lname);
+		file_put_contents("database/$id/profile/pwd",$pwd);
+		file_put_contents("database/$id/profile/gender",$g);
+		file_put_contents("database/$id/profile/city",$city);
+		file_put_contents("database/$id/profile/dob",$dob);
+		file_put_contents("database/$id/profile/date",$date);
+		file_put_contents("database/$id/theme",'');
+		file_put_contents("database/$id/pic",'img/default-profile.jpg');
+		$_SESSION['sid']=$id;
+		header("location:home.php?vr=default");
+	  }
+	  
+	}
+  }
+}
+//////////////////////////////////////
+//login process
+$aid = $_REQUEST['aid'];
+$apwd = $_REQUEST['apwd'];
+if(isset($_REQUEST['login']))
+{
+  if(empty($aid) || empty($apwd))
+  {
+   $er3 = "Enter email address and pssword";
+  }
+  else
+  {
+    if(!file_exists("database/$aid"))
+	{
+	  $er4 = "Enter wrong email address";
+	}
+	else
+	{
+	  $rp = file_get_contents("database/$aid/profile/pwd");
+	  if($rp!=$apwd)
+	  {
+	    $email = $aid;
+	    $er5 = "Enter wrong password";
+	  }
+	  else
+	  {
+	   $_SESSION['sid'] = $aid;
+	   header("location:home.php?vr=default");
+	  }
+	}
+  }
+  
+}
+?>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<div id="wrap">
+  <header>
+    
+    <div class="logo">
+      <h1>
+        <span class="a">CHATTER</span>
+        <span class="b">BOX</span>
+      </h1>
+      <p>connect to friends and relatives</p>
+    </div>
+    
+    <div class="top">
+      <form action="" method="post">
+        <table>
+          <tr>
+            <td>
+              Email Address :<br>
+              <input type="text" name="aid" value="<?php echo $email;?>" placeholder="Email address">
+            </td>
+            <td>
+              Password :<br>
+              <input type="password" name="apwd" placeholder="Password">
+            </td>
+            <td>
+             <input type="submit" name="login" value="Login">
+            </td>
+          </tr>
+		  <tr>
+		    <td class="er1" style="color:#FFD0D0;"><?php echo $er3.$er4;?></td>
+			<td class="er1" style="color:#FFD0D0;"><?php echo $er5;?></td>
+			<td></td>
+		  </tr>
+        </table>
+      </form>
+    </div>
+  </header>
+  
+  <div id="mid">
+    <div class="mid1">
+      <h2>Connect to CHATTER BOX</h2>
+      <p>
+       CHATTER BOX IS AN ATTRACTIVE WAY TO CONNECT TO 
+	YOUR LOVED ONES.JUST SIMPLY REGISTER AND ADD YOUR 
+	RELATIVES TO START A CONVERSATION,
+	SHARE YOUR FEELINGS AND YOUR ACTIVITIES TO YOUR LOVED
+	ONES AND TELL THEM HOW SPECIAL THEY ARE.
+      
+      </p>
+      <div class="demo">
+      <img src="img/1.jpg">
+      </div>
+    </div>
+    <div class="mid2">
+      <h2>Create an account</h2>
+      <p>it's easy and simple</p>
+      <div class="er"><?php echo $er;?></div>
+      <form action="" method="post">
+        <table>
+          <tr>
+            <td>
+            <input type="text" name="fname" placeholder="First Name" class="fname">
+            </td>
+            <td>
+             <input type="text" name="lname" placeholder="Last Name" class="fname">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+             <input type="text" name="id" placeholder="Enter email address" class="id"><br>
+             <span class="er1"><?php echo $er1;?></span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+             <input type="password" name="pwd" placeholder="Enter password" class="id">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+             <input type="password" name="cpwd" placeholder="Re-enter password" class="id">
+             <br>
+             <span class="er1"><?php echo $er2;?></span>
+            </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+           <span>Gender :</span>
+           Male<input type="radio" name="g" value="male">
+           Female<input type="radio" name="g" value="female">
+           </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+             <span>Birthday :</span><br>
+             <select name="day">
+               <option value="">Day</option>
+               <?php
+               for($i=1;$i<=31;$i++)
+			   {
+				echo "<option>$i</option>";   
+			   }
+			   ?>
+             </select>
+             <select name="month">
+               <option value="">Month</option>
+               <option>jan</option>
+               <option>feb</option>
+               <option>march</option>
+               <option>april</option>
+			   <option>may</option>
+			   <option>june</option>
+			   <option>july</option>
+			   <option>august</option>
+			   <option>september</option>
+			   <option>october</option>
+			   <option>november</option>
+			   <option>december</option>
+			  
+             </select>
+             <select name="year">
+               <option value="">Year</option>
+               <?php
+               for($i=1950;$i<=2017;$i++)
+			   {
+				echo "<option>$i</option>";   
+			   }
+			   ?>
+             </select>
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">
+            <select name="city" class="id">
+              <option value="">Select City</option>
+              <option>gurgaon</option>
+              <option>delhi</option>
+              <option>Noida</option>
+              <option>faridabad</option>
+            </select>
+             
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+            <input type="submit" name="reg" value="Create an account">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
